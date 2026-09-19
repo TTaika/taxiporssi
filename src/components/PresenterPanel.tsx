@@ -65,11 +65,6 @@ export function PresenterPanel() {
           Restart demo
         </button>
       </div>
-
-      <p className="mt-8 text-sm leading-relaxed text-ink-3 [@media(max-height:820px)]:mt-5">
-        Competing drivers' offers are simulated. On a test request, the simulated customer accepts offers up to ~15%
-        above the suggested price. All prices, rides and ratings are made up.
-      </p>
     </aside>
   );
 }
