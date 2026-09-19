@@ -1,0 +1,336 @@
+TAXIPÖRSSI: THE IDEA AND ITS POSSIBILITIES
+Source material for a PowerPoint presentation
+
+HOW TO USE THIS FILE
+- Each "SLIDE" section is one slide.
+- "On the slide" = short text for the slide itself.
+- "Speaker notes" = what to say, or the longer explanation for the notes field.
+- Anything in [square brackets] is a placeholder or a fact to check before presenting.
+- "In the demo" = already works in the interactive demo. "Possible next" = an idea, not built yet.
+
+
+==================================================================
+SLIDE 1: TITLE
+==================================================================
+On the slide:
+Taxipörssi
+The taxi marketplace where offers set the price.
+The algorithm suggests, the driver offers, the customer chooses.
+
+Speaker notes:
+Taxipörssi ("taxi exchange") is a two-sided marketplace for taxi rides. Big ride-hailing platforms set
+prices from above. Here the price forms the way it does on an exchange: an algorithm suggests a fair
+price, independent drivers make offers, and the customer picks the offer that suits them best.
+
+
+==================================================================
+SLIDE 2: THE PROBLEM
+==================================================================
+On the slide:
+- Drivers are entrepreneurs, but the platform sets their price
+- Large platforms take a big share of every fare [check current commission levels]
+- Customers see one price and can't tell how it was set
+- Surge pricing feels arbitrary to both sides
+
+Speaker notes:
+Most taxi drivers are self-employed, yet on the big platforms they can't influence the price of their
+own work. The platform decides the price and the commission, and the driver can only accept or decline.
+The customer gets one number with no comparison and no explanation. Nobody on either side feels in
+control of the price.
+
+
+==================================================================
+SLIDE 3: THE IDEA
+==================================================================
+On the slide:
+A price exchange for taxi rides
+1. The algorithm suggests a fair price from live market data
+2. Drivers accept the suggestion or make a counter-offer
+3. The customer compares offers and chooses
+4. After the ride, ratings reward good drivers with lower fees
+
+Speaker notes:
+The algorithm doesn't dictate the price, it anchors it. Drivers can go above or below the suggestion,
+for example charge a little more at rush hour or less when it's quiet. The customer sees real offers
+side by side (price, pickup time, rating, car) and decides. Supply and demand meet openly, which is why
+the product is called a "pörssi", an exchange.
+
+
+==================================================================
+SLIDE 4: HOW A RIDE WORKS
+==================================================================
+On the slide:
+Customer: picks a destination, sees the estimated price, taps "Request offers"
+Driver: gets the request, offers the suggested price or their own
+Customer: sees offers arrive, picks one, follows the car on the map
+Both: the ride ends, the customer rates, and the driver's profile updates
+
+Speaker notes:
+This is exactly the flow in the demo. The request reaches the driver within seconds, and the driver has
+30 seconds to respond. The customer's choice decides what the driver sees next: either "The customer
+accepted your offer!" or "The customer chose another driver", along with the winning price and pickup
+time so the driver learns from it. The agreed price is fixed before the ride starts.
+
+
+==================================================================
+SLIDE 5: THE DRIVER APP
+==================================================================
+On the slide:
+- Market view: price per km over the last 1 h / 4 h / 24 h
+- "Good time to drive": open requests vs. free cars, plus a price forecast
+- One-screen offer: suggested price, ±€1 buttons, or type your own price
+- Live acceptance probability as you change the price
+- Earnings: today's total and extra earned from counter-offers
+
+Speaker notes:
+The driver app is built for use in traffic: dark night mode, large buttons, high contrast. The market
+chart works like a stock chart and helps the driver decide whether to start driving now. When a request
+arrives, the driver sees the pickup distance, trip length, customer rating and the suggested price, and
+can adjust it with one thumb. An acceptance-probability bar shows the trade-off between a higher price
+and the risk of losing the ride.
+
+In the demo: all of the above, with simulated market data.
+
+
+==================================================================
+SLIDE 6: THE CUSTOMER APP
+==================================================================
+On the slide:
+- Pick a destination and see an estimated price immediately
+- Get several offers: price, pickup time, rating, car
+- Choose the offer that fits: cheapest, fastest or best rated
+- Follow the car on a live map, with the license plate shown
+- Rate the driver after the ride
+
+Speaker notes:
+The customer gets choice and transparency. Before ordering, the customer sees an estimate and the usual
+price range for the trip. Offers then arrive one by one, and the customer decides what matters most:
+price, speed or quality. The customer doesn't see how each offer compares with the estimate, only the
+offer itself, so the choice stays simple.
+
+In the demo: the full flow on a real map of central Helsinki, with routes along real streets.
+
+
+==================================================================
+SLIDE 7: THE PRICE ENGINE
+==================================================================
+On the slide:
+- Live market price per km, updated continuously
+- Suggested price = base fare + distance × current market price
+- A price band shows where similar rides are agreed right now
+- Acceptance model: how likely a customer is to accept a given price
+
+Speaker notes:
+In the demo the engine is a transparent formula. The market price reacts to time of day and demand,
+e.g. a Friday night rush. The suggestion anchors the negotiation so offers stay reasonable, and drivers
+can only bid within a set range around it (±30% in the demo), which prevents extreme prices.
+
+Possible next: a machine-learning model trained on real supply and demand, time, weather, events
+(concerts, ferry arrivals, flights) and historical acceptance rates.
+
+
+==================================================================
+SLIDE 8: RATINGS, TIERS AND FEES
+==================================================================
+On the slide:
+Better ratings = lower fees
+- Bronze: 10% service fee
+- Silver: 9%
+- Gold: 8%
+- Platinum: 6%
+Tiers depend on average rating and number of rides driven.
+
+Speaker notes:
+Quality pays off directly. Every customer rating feeds the driver's average, and the average and ride
+count set the tier. A Platinum driver pays 6% instead of 10%. In the demo that saves the driver
+€142.30 a month. Platinum drivers also get priority on pre-booked rides such as airport and business
+trips, and their offers are listed first. If the average drops below the tier threshold, the driver
+moves down a tier and the fee goes up, which the app shows clearly.
+
+In the demo: rating distribution, reviews, tier card with the fee highlighted, and a new rating from
+the customer app appears in the driver's profile right away.
+
+
+==================================================================
+SLIDE 9: BUSINESS MODEL
+==================================================================
+On the slide:
+- Service fee of 6–10% per ride, depending on the driver's tier
+- Lower than typical platform commissions [check and cite current figures]
+- Volume grows with liquidity: more drivers, more offers, faster matches
+
+Possible additional revenue:
+- Business accounts with monthly invoicing
+- Pre-booked rides (airport, events) with a booking fee
+- Market data and analytics for fleet owners
+
+Speaker notes:
+The model is simple: a percentage of each completed ride. The fee is deliberately lower than what drivers
+pay on the big platforms, which is the main reason for drivers to switch. The fee falls as quality rises,
+so the platform earns a little less per ride from its best drivers but keeps them loyal. Add-on revenue
+can come from business customers and pre-booked rides.
+[Add: revenue estimate per ride and per month for a target city.]
+
+
+==================================================================
+SLIDE 10: WHY DRIVERS JOIN
+==================================================================
+On the slide:
+- Set your own price, like a real entrepreneur
+- Lower fees: 6–10%
+- Market data that shows when driving pays best
+- Honest feedback: see why you lost a ride
+- Good service is rewarded with a lower fee
+
+Speaker notes:
+Drivers are the scarce side of the market, so the pitch is built around them. Taxipörssi gives back
+control over price and shows the data needed to use it well. When a customer picks another driver, the
+app shows the winning price and pickup time, so the driver can adjust next time.
+
+
+==================================================================
+SLIDE 11: WHY CUSTOMERS USE IT
+==================================================================
+On the slide:
+- Several real offers instead of one take-it-or-leave-it price
+- Choose by price, pickup time or rating
+- The price is fixed before the ride starts
+- Better-rated drivers are easy to find
+
+Speaker notes:
+For the customer, Taxipörssi is like comparing flight prices, but in seconds. Competition between
+drivers keeps prices fair, and ratings make quality visible. The estimate shown up front helps the
+customer judge whether an offer is reasonable.
+
+
+==================================================================
+SLIDE 12: COMPETITION AND DIFFERENTIATION
+==================================================================
+On the slide:
+- Global platforms (e.g. Uber, Bolt): the platform sets the price
+- Local taxi dispatch apps: [list local competitors in the target city]
+- Bidding apps (e.g. inDrive): the passenger proposes a price
+- Taxipörssi: an algorithm anchors the price, drivers compete, quality lowers fees
+
+Speaker notes:
+Bidding for rides already exists. For example, in inDrive the passenger proposes a price and drivers
+respond [check the current model]. Taxipörssi differs in three ways:
+1) an algorithmic suggestion anchors every negotiation, so prices stay fair and offers are fast;
+2) drivers get market data (price chart, demand) to price well;
+3) the tier system ties customer ratings directly to the driver's fee.
+It's built for markets where many taxi drivers are independent entrepreneurs.
+
+
+==================================================================
+SLIDE 13: MARKET AND TIMING
+==================================================================
+On the slide:
+- Finland deregulated its taxi market in July 2018: prices are free and there are more operators
+- Many drivers are independent licence holders [add figure]
+- Start: Helsinki metropolitan area, then other large Finnish cities
+- Later: other markets with many independent drivers
+
+Speaker notes:
+Since the 2018 reform, taxi prices in Finland are no longer fixed by regulation, and anyone with a taxi
+licence can operate. That makes a price-forming marketplace possible. [Add: market size in euros, number
+of licences, share of rides booked through apps. Cite sources.]
+[Check: rules on how the price must be agreed or shown to the customer. The offer model gives a fixed
+price agreed before the ride, which should fit, but confirm with a legal review.]
+
+
+==================================================================
+SLIDE 14: THE DEMO
+==================================================================
+On the slide:
+Interactive demo: customer app and driver app side by side
+[Link to the demo]
+
+Suggested demo script (about 3–4 minutes):
+1. Driver: show the market chart (1 h / 4 h / 24 h) and "Good time to drive"
+2. Customer: pick "Home", show the estimate, tap "Request offers"
+3. Driver: the request appears; raise the price by €1 and tap "Offer"
+4. Customer: offers arrive, and Mikko's (Platinum) is listed first; choose it
+5. Driver: "The customer accepted your offer!"; tap "Start pickup"
+6. Both phones follow the same ride: the ETA counts down, then "Ride complete"
+7. Driver: fare, 6% service fee and "You earn"; Customer: the receipt, then 5 stars
+8. Driver: open Profile: the new review, the rating and the 6% fee
+
+Speaker notes:
+On a wide screen the two phones are shown side by side, so the audience sees both sides react in real
+time. On a phone, a Customer / Driver switch at the top changes the view. A dot on the switch shows when
+the other side is waiting for action. All data in the demo is simulated. The map and routes use real
+Helsinki streets (OpenStreetMap).
+
+
+==================================================================
+SLIDE 15: WHAT THE DEMO SHOWS VS. WHAT IS NEXT
+==================================================================
+On the slide:
+Built (demo):
+- Full customer and driver flows, linked to each other
+- The same ride on both phones: live ETA countdown, receipt for the customer, fare and fee
+  breakdown for the driver
+- Choice of pickup point and search across 14 real Helsinki places
+- Offer mechanism with suggested price, ±€1 steps and your own price
+- Market price chart, demand signal, earnings
+- Ratings, tiers and fees
+- Real Helsinki map and routes
+
+Possible next:
+- Real backend, accounts and real-time matching
+- Payments in the app (card, business invoicing)
+- Live GPS tracking and navigation
+- Machine-learning price model
+- Pre-booked rides, airport and event rides
+- Driver heatmaps: where demand is right now
+- Licence and identity verification for drivers
+
+Speaker notes:
+The demo proves the user experience and the logic of the marketplace. The next step is an MVP with a
+real backend, payments and live location, piloted with a small group of drivers in one city.
+
+
+==================================================================
+SLIDE 16: RISKS AND HOW WE ANSWER THEM
+==================================================================
+On the slide:
+- Liquidity: enough drivers and customers at the same time
+  -> start in one city, onboard drivers first with the low fee
+- Speed: customers want a car now, not an auction
+  -> offers arrive in seconds; the suggestion makes accepting quick
+- Race to the bottom on price
+  -> bids are limited to a range around the suggestion; ratings reward quality, not just low price
+- Regulation and trust
+  -> licence verification, fixed prices agreed up front, ratings
+
+Speaker notes:
+The biggest risk for any marketplace is liquidity. The plan is to win drivers first, because they are
+the scarce side and they benefit most from lower fees and pricing control.
+
+
+==================================================================
+SLIDE 17: NEXT STEPS / THE ASK
+==================================================================
+On the slide:
+[What you are asking for: funding amount, pilot partners, drivers for testing]
+[Timeline: MVP, pilot, launch]
+[Team]
+
+Speaker notes:
+[Fill in: how much funding, what it is used for, milestones for the next 6–12 months.]
+
+
+==================================================================
+APPENDIX: NUMBERS USED IN THE DEMO (SIMULATED)
+==================================================================
+Use these only to describe the demo, not as real market data.
+- Scenario: Friday 23:45 in Helsinki, evening rush starting
+- Market price in the demo: about €2.84/km, forecast ~€3.10/km at 01:00–03:00
+- Demand in the demo: 41 open requests, 19 free cars nearby
+- Suggested price formula in the demo: €5.90 base fare + km × market price per km
+- The simulated customer accepts offers up to ~15% above the suggestion
+- Driver bids are limited to ±30% of the suggestion
+- The driver has 30 seconds to respond to a request
+- Service fees: Bronze 10%, Silver 9%, Gold 8%, Platinum 6%
+- Demo driver: Mikko L., Platinum, rating 4.92 from 1,248 ratings, saves €142.30/month in fees
+- Map and routes: © OpenStreetMap contributors; routes calculated with OSRM
