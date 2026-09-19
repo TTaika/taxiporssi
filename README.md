@@ -10,6 +10,21 @@ npm run dev      # http://localhost:5173 (also reachable from a phone on the sam
 npm run build    # production build in dist/
 ```
 
+## Deploy on Render
+
+The repo includes a Render Blueprint (`render.yaml`) that publishes the app as a free **static site**.
+
+1. In Render: **New → Blueprint**, connect GitHub and pick this repository.
+2. Render reads `render.yaml` and creates the `taxiporssi` static site:
+   - Build command: `npm ci --include=dev && npm run build`
+   - Publish directory: `dist`
+   - Node version: 22 (from `NODE_VERSION` and `.node-version`)
+3. Every push to `main` redeploys automatically.
+
+To set it up by hand instead: **New → Static Site**, with the build command and publish directory above.
+It can also run as a **Web Service** with build command `npm ci --include=dev && npm run build` and start
+command `npm start` (serves `dist` on Render's `$PORT`).
+
 ## Customer and driver together
 
 1. The **customer** picks a destination, sees the price the algorithm estimates and taps "Request offers".

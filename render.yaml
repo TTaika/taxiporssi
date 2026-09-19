@@ -1,0 +1,24 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# Taxipörssi on pelkkä selainsovellus, joten se julkaistaan staattisena sivustona (ilmainen, CDN).
+services:
+  - type: web
+    runtime: static
+    name: taxiporssi
+    buildCommand: npm ci --include=dev && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22.23.2
+    headers:
+      # Viten tiedostonimissä on sisältötiiviste, joten ne voi välimuistittaa pysyvästi.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    routes:
+      # Kaikki tuntemattomat polut sovellukselle (single-page app).
+      - type: rewrite
+        source: /*
+        destination: /index.html
