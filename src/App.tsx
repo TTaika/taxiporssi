@@ -29,9 +29,11 @@ function Shell() {
 
   return (
     <div className="flex h-full flex-col pt-[var(--safe-top,env(safe-area-inset-top))] lg:pt-0">
-      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line bg-[#060c17] px-4 py-2 lg:hidden">
-        <span className="text-sm font-medium text-ink-3">Demo</span>
-        <RoleSwitch />
+      <div className="shrink-0 border-b border-line bg-[#060c17] lg:hidden">
+        <div className="mx-auto flex w-full items-center justify-between gap-3 px-4 py-2 sm:max-w-[480px]">
+          <span className="text-sm font-medium text-ink-3">Demo</span>
+          <RoleSwitch />
+        </div>
       </div>
 
       <div className="flex min-h-0 flex-1 items-center justify-center lg:gap-12 lg:p-8 xl:gap-10">

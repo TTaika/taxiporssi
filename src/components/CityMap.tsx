@@ -34,6 +34,8 @@ interface Props {
   motion?: CarMotion;
   /** Muut autot kartalla */
   cars?: Pt[];
+  /** Pisteet, joihin näkymä rajataan (oletuksena reitti tai kaikki autot) */
+  focus?: Pt[];
   label: string;
   insets?: Insets;
   /** Milloin auton liike alkoi (ms) – näkymä voi liittyä kesken käynnissä olevaan kyytiin */
@@ -56,6 +58,8 @@ const MAIN_DISTRICTS = new Set([
   "Kalasatama",
 ]);
 const DETAIL_ZOOM = 1.5;
+/** Tätä kauempaa katsottuna nimet menisivät päällekkäin, joten niitä ei näytetä. */
+const FAR_ZOOM = 2.6;
 
 const toD = (pts: Pt[]) => "M" + pts.map((p) => `${p[0]},${p[1]}`).join("L");
 
@@ -130,6 +134,7 @@ export function CityMap({
   insets = NO_INSETS,
   motionStart,
   motionMs,
+  focus: focusOverride,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const approachRef = useRef<SVGPathElement>(null);
@@ -153,12 +158,12 @@ export function CityMap({
     return () => ro.disconnect();
   }, []);
 
-  const focus: Pt[] = [scene.pickup];
+  const focus: Pt[] = focusOverride ? [scene.pickup, ...focusOverride] : [scene.pickup];
   if (scene.dropoff) focus.push(scene.dropoff);
   if (scene.car) focus.push(scene.car);
   if (scene.trip) focus.push(...scene.trip);
   if (scene.approach) focus.push(...scene.approach);
-  if (!scene.dropoff && !scene.car) focus.push(...cars);
+  if (!focusOverride && !scene.dropoff && !scene.car) focus.push(...cars);
   const { box, unitsPerPx: u } = fitViewBox(focus, size.w, size.h, insets);
 
   // Auto ajaa noutoon tai kyydin määränpäähän.
@@ -191,6 +196,7 @@ export function CityMap({
     strokeLinecap: "round",
     strokeLinejoin: "round",
   } as const;
+  const tripLine = { fill: "none", strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
   return (
     <div className="relative h-full w-full">
@@ -213,7 +219,7 @@ export function CityMap({
         <BaseMap />
 
         {districts
-          .filter((d) => u <= DETAIL_ZOOM || MAIN_DISTRICTS.has(d.name))
+          .filter((d) => u <= DETAIL_ZOOM || (u <= FAR_ZOOM && MAIN_DISTRICTS.has(d.name)))
           .map((d) => (
             <text
               key={d.name}
@@ -251,16 +257,18 @@ export function CityMap({
           />
         )}
 
+        {/* Piirtoanimaatio (pathLength) toimii vain ilman non-scaling-strokea: muuten viivaus mitataan
+            ruudun pikseleinä ja zoomatessa sisään reitin loppuosa jää piirtämättä. Leveys skaalataan siksi itse. */}
         {scene.trip && (
           <>
             <motion.path
               key={`${sceneKey}-glow`}
               d={toD(scene.trip)}
               stroke="#39f28a"
-              strokeWidth={9}
+              strokeWidth={9 * u}
               strokeOpacity={0.35}
               filter={`url(#${glowId})`}
-              {...line}
+              {...tripLine}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 1.1, delay: 0.35, ease: "easeInOut" }}
@@ -270,8 +278,8 @@ export function CityMap({
               ref={tripRef}
               d={toD(scene.trip)}
               stroke="#39f28a"
-              strokeWidth={3.5}
-              {...line}
+              strokeWidth={3.5 * u}
+              {...tripLine}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 1.1, delay: 0.35, ease: "easeInOut" }}

@@ -43,9 +43,8 @@ export function HomeSheet({ customer }: { customer: CustomerState }) {
         <span className="size-2.5 shrink-0 rounded-full bg-volt" aria-hidden />
         <span className="min-w-0 flex-1">
           <span className="block text-xs text-ink-3">Pickup</span>
-          <span className="block truncate font-semibold">
-            {pickup.label ? `${pickup.label}, ${pickup.address}` : pickup.address}
-          </span>
+          <span className="block truncate font-semibold">{pickup.label ?? pickup.address}</span>
+          {pickup.label && <span className="block truncate text-sm text-ink-2">{pickup.address}</span>}
         </span>
         <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-volt">
           Change
@@ -107,7 +106,7 @@ export function HomeSheet({ customer }: { customer: CustomerState }) {
           </label>
 
           {!q && (
-            <div className="no-scrollbar -mx-4 mt-3 flex gap-2 overflow-x-auto px-4" aria-label="Popular places">
+            <div className="mt-3 flex flex-wrap gap-2" aria-label="Popular places">
               {popular.map((d) => (
                 <button
                   key={d.id}
@@ -116,7 +115,7 @@ export function HomeSheet({ customer }: { customer: CustomerState }) {
                   className="flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-line px-3.5 text-sm font-medium text-ink-2 hover:text-ink"
                 >
                   <MapPin size={14} aria-hidden />
-                  {d.label ?? d.address}
+                  {d.short ?? d.label ?? d.address}
                 </button>
               ))}
             </div>

@@ -34,8 +34,13 @@ const SHEETS: Record<CustomerStage, (props: { customer: CustomerState }) => Reac
 
 const allCars: Pt[] = [...idleCars, ...competitors.map((c) => carPoint(c.id)), carPoint(LINKED_DRIVER_ID)];
 
+const nearest = (from: Pt, points: Pt[], n: number) =>
+  [...points]
+    .sort((a, b) => Math.hypot(a[0] - from[0], a[1] - from[1]) - Math.hypot(b[0] - from[0], b[1] - from[1]))
+    .slice(0, n);
+
 /** Paneeli nousee kartan alareunan päälle; kotinäkymässä yläreunassa on lisäksi tietosiru. */
-const MAP_INSETS = { top: 16, right: 16, bottom: 30, left: 16 };
+const MAP_INSETS = { top: 16, right: 16, bottom: 40, left: 16 };
 const HOME_MAP_INSETS = { ...MAP_INSETS, top: 40 };
 
 export function CustomerApp() {
@@ -51,6 +56,8 @@ export function CustomerApp() {
   let scene: MapScene = { pickup: pickupPoint };
   let cars: Pt[] = allCars;
   let carMotion: CarMotion = "idle";
+  // Kotinäkymässä rajataan noutopaikkaan ja lähimpiin autoihin, jotta pieni kartta ei zoomaa koko kaupunkiin.
+  let focus: Pt[] | undefined = nearest(pickupPoint, allCars, 4);
   if (destination) {
     scene = {
       pickup: pickupPoint,
@@ -58,6 +65,7 @@ export function CustomerApp() {
       trip: tripRoute(customer.pickupId, destination.id).path,
     };
     cars = customer.stage === "offers" ? customer.offers.map((o) => o.carPoint) : [];
+    focus = undefined;
   }
   if (trip) {
     scene = trip.map;
@@ -87,6 +95,7 @@ export function CustomerApp() {
           scene={scene}
           sceneKey={destination ? `trip-${customer.pickupId}-${destination.id}-${customer.orderId ?? 0}` : "home"}
           motion={carMotion}
+          focus={focus}
           motionStart={trip?.stageStartedAt}
           motionMs={trip ? stageDuration(trip) : undefined}
           insets={customer.stage === "home" ? HOME_MAP_INSETS : MAP_INSETS}

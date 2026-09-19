@@ -24,7 +24,7 @@ export function ProfileScreen() {
         </span>
         <div className="min-w-0">
           <h1 className="font-display text-[26px] font-semibold leading-tight">{driver.name}</h1>
-          <p className="truncate text-sm text-ink-2">
+          <p className="text-sm text-ink-2">
             {driver.business}, self-employed since {driver.since}
           </p>
           <p className="truncate text-sm text-ink-3">

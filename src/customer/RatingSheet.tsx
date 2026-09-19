@@ -30,7 +30,7 @@ export function RatingSheet({ customer }: { customer: CustomerState }) {
   };
 
   return (
-    <div className="px-4 pb-5 pt-5">
+    <div className="px-4 pt-5">
       <p className="text-ink-2">Arrived at {destination.address}</p>
       <h2 className="font-display text-[28px] font-semibold leading-tight">How was your ride?</h2>
 
@@ -95,21 +95,24 @@ export function RatingSheet({ customer }: { customer: CustomerState }) {
         Your rating affects the driver's tier and how prominently their offers are shown.
       </p>
 
-      <button
-        type="button"
-        disabled={stars === 0}
-        onClick={submit}
-        className="glow-go mt-4 flex h-16 w-full items-center justify-center rounded-2xl bg-go text-xl font-semibold text-go-ink disabled:opacity-40 disabled:shadow-none"
-      >
-        Send rating
-      </button>
-      <button
-        type="button"
-        onClick={() => dispatch({ type: "skipRating" })}
-        className="mt-1 h-11 w-full font-medium text-ink-2 hover:text-ink"
-      >
-        Skip
-      </button>
+      {/* Pääpainike pysyy näkyvissä myös matalalla näytöllä. */}
+      <div className="sticky bottom-0 -mx-4 mt-3 bg-deck px-4 pt-2">
+        <button
+          type="button"
+          disabled={stars === 0}
+          onClick={submit}
+          className="glow-go flex h-16 w-full items-center justify-center rounded-2xl bg-go text-xl font-semibold text-go-ink disabled:opacity-40 disabled:shadow-none"
+        >
+          Send rating
+        </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "skipRating" })}
+          className="mt-1 h-11 w-full pb-1 font-medium text-ink-2 hover:text-ink"
+        >
+          Skip
+        </button>
+      </div>
     </div>
   );
 }

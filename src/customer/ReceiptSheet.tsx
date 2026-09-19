@@ -16,7 +16,7 @@ export function ReceiptSheet({ customer }: { customer: CustomerState }) {
   const firstName = offer.name.split(" ")[0];
 
   return (
-    <div className="px-4 pb-5 pt-5">
+    <div className="px-4 pt-5">
       <div className="flex items-center gap-3">
         <span className="glow-go grid size-12 shrink-0 place-items-center rounded-full bg-go text-go-ink">
           <CircleCheck size={28} strokeWidth={2.2} aria-hidden />
@@ -65,20 +65,23 @@ export function ReceiptSheet({ customer }: { customer: CustomerState }) {
         </p>
       </section>
 
-      <button
-        type="button"
-        onClick={() => dispatch({ type: "startRating" })}
-        className="glow-go mt-4 flex h-16 w-full items-center justify-center rounded-2xl bg-go text-xl font-semibold text-go-ink"
-      >
-        Rate {firstName}
-      </button>
-      <button
-        type="button"
-        onClick={() => dispatch({ type: "skipRating" })}
-        className="mt-1 h-11 w-full font-medium text-ink-2 hover:text-ink"
-      >
-        Done
-      </button>
+      {/* Pääpainike pysyy näkyvissä myös matalalla näytöllä. */}
+      <div className="sticky bottom-0 -mx-4 mt-3 bg-deck px-4 pt-2">
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "startRating" })}
+          className="glow-go flex h-16 w-full items-center justify-center rounded-2xl bg-go text-xl font-semibold text-go-ink"
+        >
+          Rate {firstName}
+        </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "skipRating" })}
+          className="mt-1 h-11 w-full pb-1 font-medium text-ink-2 hover:text-ink"
+        >
+          Done
+        </button>
+      </div>
     </div>
   );
 }

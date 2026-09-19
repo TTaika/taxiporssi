@@ -29,7 +29,7 @@ export function DutyBar() {
         </span>
         <span className="min-w-0">
           <span className="block font-semibold leading-tight">Online</span>
-          <span className="block truncate text-sm text-ink-2">Looking for ride requests nearby…</span>
+          <span className="block truncate text-sm text-ink-2">Finding rides nearby…</span>
         </span>
       </div>
       <button

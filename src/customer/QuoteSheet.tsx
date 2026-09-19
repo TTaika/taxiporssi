@@ -15,7 +15,7 @@ export function QuoteSheet({ customer }: { customer: CustomerState }) {
   const band = marketBand(customer.recommended);
 
   return (
-    <div className="px-4 pb-4 pt-3">
+    <div className="px-4 pt-3">
       <div className="flex items-center justify-between">
         <button
           type="button"
@@ -58,14 +58,17 @@ export function QuoteSheet({ customer }: { customer: CustomerState }) {
         {rider.payment}
       </p>
 
-      <button
-        type="button"
-        onClick={() => dispatch({ type: "order" })}
-        className="glow-volt mt-4 flex h-16 w-full items-center justify-center gap-2.5 rounded-2xl bg-volt text-xl font-semibold text-night"
-      >
-        <Send size={20} strokeWidth={2.5} />
-        Request offers
-      </button>
+      {/* Pääpainike pysyy näkyvissä myös matalalla näytöllä. */}
+      <div className="sticky bottom-0 -mx-4 mt-3 bg-deck px-4 pt-2">
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "order" })}
+          className="glow-volt flex h-16 w-full items-center justify-center gap-2.5 rounded-2xl bg-volt text-xl font-semibold text-night"
+        >
+          <Send size={20} strokeWidth={2.5} />
+          Request offers
+        </button>
+      </div>
     </div>
   );
 }

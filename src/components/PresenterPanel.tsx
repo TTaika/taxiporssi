@@ -15,31 +15,35 @@ export function PresenterPanel() {
   const { state, dispatch } = useApp();
 
   return (
-    <aside className="hidden w-[340px] shrink-0 flex-col lg:flex xl:w-[300px]">
+    <aside className="no-scrollbar hidden max-h-full w-[340px] shrink-0 flex-col overflow-y-auto py-2 lg:flex xl:w-[300px]">
       <div className="flex items-center gap-3">
         <Logo size={40} />
-        <span className="font-display text-4xl font-semibold tracking-wide">Taxipörssi</span>
+        <span className="font-display text-4xl font-semibold tracking-wide [@media(max-height:820px)]:text-3xl">
+          Taxipörssi
+        </span>
       </div>
-      <p className="mt-4 text-lg text-ink-2">
+      <p className="mt-4 text-lg text-ink-2 [@media(max-height:820px)]:mt-3 [@media(max-height:820px)]:text-base">
         A taxi marketplace where offers set the price. The algorithm suggests, the driver offers, the customer chooses.
       </p>
 
-      <div className="mt-6 xl:hidden">
+      <div className="mt-6 xl:hidden [@media(max-height:820px)]:mt-4">
         <RoleSwitch />
       </div>
 
-      <ol className="mt-8 space-y-4">
+      <ol className="mt-8 space-y-4 [@media(max-height:820px)]:mt-5 [@media(max-height:820px)]:space-y-3">
         {STEPS.map((step, i) => (
           <li key={step} className="flex gap-3.5">
             <span className="grid size-7 shrink-0 place-items-center rounded-full border border-line font-display font-semibold text-ink-2">
               {i + 1}
             </span>
-            <span className="pt-0.5 text-ink-2">{step}</span>
+            <span className="pt-0.5 text-ink-2 [@media(max-height:820px)]:text-[15px] [@media(max-height:820px)]:leading-snug">
+              {step}
+            </span>
           </li>
         ))}
       </ol>
 
-      <div className="mt-10 flex flex-col gap-2">
+      <div className="mt-10 flex flex-col gap-2 [@media(max-height:820px)]:mt-6">
         <button
           type="button"
           disabled={Boolean(state.active || state.driverRide)}
@@ -62,7 +66,7 @@ export function PresenterPanel() {
         </button>
       </div>
 
-      <p className="mt-8 text-sm leading-relaxed text-ink-3">
+      <p className="mt-8 text-sm leading-relaxed text-ink-3 [@media(max-height:820px)]:mt-5">
         Competing drivers' offers are simulated. On a test request, the simulated customer accepts offers up to ~15%
         above the suggested price. All prices, rides and ratings are made up.
       </p>

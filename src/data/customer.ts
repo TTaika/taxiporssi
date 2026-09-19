@@ -19,6 +19,8 @@ export interface Place {
   id: string;
   /** Oma nimi (Home, Work) tai paikan nimi */
   label?: string;
+  /** Lyhyt nimi pikavalintaan */
+  short?: string;
   kind: "home" | "work" | "recent" | "place" | "location";
   address: string;
   area: string;
@@ -44,8 +46,22 @@ export const destinations: Place[] = [
   { id: "ratapihantie6", label: "Work", kind: "work", address: "Ratapihantie 6", area: "Pasila" },
   { id: "lauttasaarentie28", kind: "recent", address: "Lauttasaarentie 28", area: "Lauttasaari" },
   { id: "messitytonkatu4", kind: "recent", address: "Messitytönkatu 4", area: "Jätkäsaari" },
-  { id: "kaivokatu1", label: "Helsinki Central Station", kind: "place", address: "Kaivokatu 1", area: "Kluuvi" },
-  { id: "oodi", label: "Oodi Central Library", kind: "place", address: "Töölönlahdenkatu 4", area: "Kluuvi" },
+  {
+    id: "kaivokatu1",
+    label: "Helsinki Central Station",
+    short: "Central Station",
+    kind: "place",
+    address: "Kaivokatu 1",
+    area: "Kluuvi",
+  },
+  {
+    id: "oodi",
+    label: "Oodi Central Library",
+    short: "Oodi Library",
+    kind: "place",
+    address: "Töölönlahdenkatu 4",
+    area: "Kluuvi",
+  },
   { id: "olympiastadion", label: "Olympic Stadium", kind: "place", address: "Paavo Nurmen tie 1", area: "Töölö" },
   { id: "kauppatori", label: "Market Square", kind: "place", address: "Kauppatori", area: "Kaartinkaupunki" },
   {
@@ -75,14 +91,7 @@ export const destinations: Place[] = [
 ];
 
 /** Pikavalinnat hakukentän alla. */
-export const popularIds = [
-  "kaivokatu1",
-  "kauppatori",
-  "olympiastadion",
-  "tyynenmerenkatu14",
-  "oodi",
-  "hermanninrantatie5",
-];
+export const popularIds = ["kaivokatu1", "kauppatori", "olympiastadion", "oodi"];
 
 export const pickupById = (id: string) => pickupOptions.find((p) => p.id === id) ?? pickupOptions[0];
 export const destinationById = (id: string) => destinations.find((d) => d.id === id)!;
