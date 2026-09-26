@@ -1,7 +1,7 @@
 # Taxipörssi – demo
 
 An interactive, mobile-first UI demo of a taxi marketplace where offers set the price: a customer app and a
-driver app, linked to each other. There is no backend. All data is mock data in `src/data/`, and the shared state
+driver app, linked to each other. The target is to minimise the "middleman" in the taxi industry. There is currently no backend. All data is mock data in `src/data/`, and the shared state
 lives in a React Context (`src/state/AppContext.tsx`).
 
 ```bash
